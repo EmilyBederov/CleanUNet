@@ -13,16 +13,15 @@
         "tsfm_d_inner": 2048
     },
     "train_config": {
-        "exp_path": "DNS-large-full",
+        "exp_path": "VOICEBANK-large-full",
         "log":{
             "directory": "./exp",
             "ckpt_iter": "max",
-            "iters_per_ckpt": 10000,
+            "iters_per_ckpt": 5000,
             "iters_per_valid": 500
         },
-        
         "optimization":{
-            "n_iters": 250000,
+            "n_iters": 100000,
             "learning_rate": 2e-4,
             "batch_size_per_gpu": 8
         },
@@ -41,12 +40,8 @@
         }
     },
     "trainset_config": {
-        "data_dir": "./voicebank_demand/",
-        "train_clean_dir": "clean_trainset_28spk_wav",
-        "train_noisy_dir": "noisy_trainset_28spk_wav", 
-        "test_clean_dir": "clean_testset_wav",
-        "test_noisy_dir": "noisy_testset_wav",
-        "crop_length_sec": 3.0,  
+        "root": "./voicebank_dns_format",
+        "crop_length_sec": 0.0,
         "sample_rate": 16000
     },
     "gen_config":{
