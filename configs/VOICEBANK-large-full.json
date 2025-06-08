@@ -41,7 +41,7 @@
     },
     "trainset_config": {
         "root": "./voicebank_dns_format",
-        "crop_length_sec": 0.0,
+        "crop_length_sec": 1.0,
         "sample_rate": 16000
     },
     "gen_config":{
