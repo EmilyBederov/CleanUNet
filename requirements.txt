@@ -7,3 +7,6 @@ pip install pesq
 pip install pystoi
 datasets
 scipy
+numpy
+torchaudio
+torch
