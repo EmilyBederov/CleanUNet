@@ -348,7 +348,7 @@ class CleanUNet(nn.Module):
         # decoder
         for i, upsampling_block in enumerate(self.decoder):
             skip_i = skip_connections[i]
-            x += skip_i[:, :, :x.shape[-1]]
+            x = x + skip_i[:, :, :x.shape[-1]]
             x = upsampling_block(x)
 
         x = x[:, :, :L] * std
