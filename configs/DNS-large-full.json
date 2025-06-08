@@ -20,6 +20,7 @@
             "iters_per_ckpt": 10000,
             "iters_per_valid": 500
         },
+        
         "optimization":{
             "n_iters": 250000,
             "learning_rate": 2e-4,
@@ -40,8 +41,12 @@
         }
     },
     "trainset_config": {
-        "root": "./dns",
-        "crop_length_sec": 10,
+        "data_dir": "./voicebank_demand/",
+        "train_clean_dir": "clean_trainset_28spk_wav",
+        "train_noisy_dir": "noisy_trainset_28spk_wav", 
+        "test_clean_dir": "clean_testset_wav",
+        "test_noisy_dir": "noisy_testset_wav",
+        "crop_length_sec": 3.0,  
         "sample_rate": 16000
     },
     "gen_config":{
