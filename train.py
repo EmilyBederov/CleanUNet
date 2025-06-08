@@ -208,7 +208,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Parse configs. Globals nicer in this case
-    with open(args.configs) as f:
+    with open(args.config) as f:
         data = f.read()
     config = json.loads(data)
     train_config            = config["train_config"]        # training parameters
