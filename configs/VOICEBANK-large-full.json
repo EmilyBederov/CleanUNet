@@ -13,7 +13,7 @@
         "tsfm_d_inner": 2048
     },
     "train_config": {
-        "exp_path": "VOICEBANK-large-full",
+        "exp_path": "VOICEBANK-large-full/checkpoint/100000.pkl",
         "log":{
             "directory": "./exp",
             "ckpt_iter": "max",
