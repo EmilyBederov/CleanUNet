@@ -1,0 +1,8 @@
+voicebank_dns_format/
+exp/
+*.pth
+*.wav
+*.npy
+__pycache__/
+*.log
+logs/

@@ -1,0 +1,12 @@
+pip install pillow==6.2.0
+pip install torchaudio==0.8.0
+pip install inflect==4.1.0
+pip install scipy==1.5.0
+pip install tqdm
+pip install pesq
+pip install pystoi
+datasets
+scipy
+numpy
+torchaudio
+torch

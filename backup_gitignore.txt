@@ -1,0 +1,7 @@
+exp/
+logs/
+*.wav
+*.pt
+*.pkl
+*.ckpt
+__pycache__/
