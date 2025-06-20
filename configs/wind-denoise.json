@@ -40,7 +40,7 @@
         }
     },
     "trainset_config": {
-    "root": "../data/wind_dataset_structured/testing_set",  
+    "root": "../data/wind_dataset_structured/",  
     "crop_length_sec": 10,
     "sample_rate": 16000
     },
