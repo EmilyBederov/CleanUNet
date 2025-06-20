@@ -32,7 +32,7 @@
             "stft_config":{
                 "sc_lambda": 0.5,
                 "mag_lambda": 0.5,
-                "band": "high",
+                "band": "full",
                 "hop_sizes": [50, 120, 240],
                 "win_lengths": [240, 600, 1200],
                 "fft_sizes": [512, 1024, 2048]
@@ -40,17 +40,15 @@
         }
     },
     "trainset_config": {
-    "root": "../data/wind_dataset_structured/",  
-    "crop_length_sec": 10,
-    "sample_rate": 16000
+        "root": "./dns",
+        "crop_length_sec": 10,
+        "sample_rate": 16000
     },
     "gen_config":{
-    "output_directory": "./exp/wind_denoised" 
+        "output_directory": "./exp"
     },
     "dist_config": {
         "dist_backend": "nccl",
         "dist_url": "tcp://localhost:54321"
     }
 }
-
-
