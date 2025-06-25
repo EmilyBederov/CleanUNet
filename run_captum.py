@@ -2,20 +2,36 @@ from captum_cleanunet_analyzer import analyze_cleanunet_with_captum
 from network import CleanUNet
 import json
 import torch
+import os
 
+# Load config exactly like denoise.py
+with open('configs/wind-denoise.json') as f:
+    data = f.read()
+config = json.loads(data)
 
-# Load your model (using your existing setup)
-with open('configs/DNS-large-full.json') as f:
-    config = json.load(f)
+network_config = config["network_config"]
+train_config = config["train_config"]
 
-model = CleanUNet(**config['network_config'])
-checkpoint = torch.load('./exp/DNS-large-full/checkpoint/pretrained.pkl', map_location='cpu')
-model.load_state_dict(checkpoint['model_state_dict'])
-model.cuda().eval()
+# Create model exactly like denoise.py
+net = CleanUNet(**network_config).cuda()
 
-# Run analysis with your audio files
+# Load checkpoint exactly like denoise.py
+exp_path = train_config["exp_path"]  # This gets "DNS-large-full"
+ckpt_directory = os.path.join(train_config["log"]["directory"], exp_path, 'checkpoint')
+ckpt_iter = 'pretrained'
+model_path = os.path.join(ckpt_directory, '{}.pkl'.format(ckpt_iter))
+
+print(f"Loading model from: {model_path}")
+
+checkpoint = torch.load(model_path, map_location='cpu')
+net.load_state_dict(checkpoint['model_state_dict'])
+net.eval()
+
+print("Model loaded successfully!")
+
+# Now run Captum analysis
 results, attributions = analyze_cleanunet_with_captum(
-    model=model,
+    model=net,  # Use 'net' like in denoise.py
     clean_path="../data/clean_data/Sample32.wav",
     noisy_path="../data/distorted_signals/mixed_Sample100.wav", 
     windy_path="../data/wind_samples/WinD131.wav"
