@@ -9,7 +9,7 @@ with open('configs/DNS-large-full.json') as f:
     config = json.load(f)
 
 model = CleanUNet(**config['network_config'])
-checkpoint = torch.load('/exp/DNS-large-full/checkpoint/pretrained.pkl', map_location='cpu')
+checkpoint = torch.load('./exp/DNS-large-full/checkpoint/pretrained.pkl', map_location='cpu')
 model.load_state_dict(checkpoint['model_state_dict'])
 model.cuda().eval()
 
