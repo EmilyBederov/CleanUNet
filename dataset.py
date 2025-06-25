@@ -43,20 +43,20 @@ class CleanNoisyPairDataset(Dataset):
                            os.path.join(root, 'training_set/noisy', 'fileid_{}.wav'.format(i))) for i in range(N_clean)]
         
         elif subset == "testing":
-            sortkey = lambda name: '_'.join(name.split('_')[-2:])  # specific for dns due to test sample names
-            _p = os.path.join(root, 'datasets/test_set/synthetic/no_reverb')  # path for DNS
+
+            _p = os.path.join(root, 'testing_set')  # Your actual path
             
             clean_files = os.listdir(os.path.join(_p, 'clean'))
             noisy_files = os.listdir(os.path.join(_p, 'noisy'))
             
-            clean_files.sort(key=sortkey)
-            noisy_files.sort(key=sortkey)
-
+            # Simple sorting (adjust if your file naming is different)
+            clean_files.sort()
+            noisy_files.sort()
+            
             self.files = []
             for _c, _n in zip(clean_files, noisy_files):
-                assert sortkey(_c) == sortkey(_n)
-                self.files.append((os.path.join(_p, 'clean', _c), 
-                                   os.path.join(_p, 'noisy', _n)))
+                self.files.append((os.path.join(_p, 'clean', _c),
+                                os.path.join(_p, 'noisy', _n)))
             self.crop_length_sec = 0
 
         else:
