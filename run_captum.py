@@ -5,7 +5,7 @@ import torch
 
 
 # Load your model (using your existing setup)
-with open('config.json') as f:
+with open('configs/DNS-large-full.json') as f:
     config = json.load(f)
 
 model = CleanUNet(**config['network_config'])
