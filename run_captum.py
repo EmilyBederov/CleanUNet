@@ -25,7 +25,7 @@ net.eval()
 print("✅ Model loaded successfully!")
 
 # Run analysis with your audio files (UPDATE THESE PATHS)
-results = analyze_cleanunet_simple(
+results = analyze_cleanunet_working(
     model=net,  # Use 'net' like in denoise.py
     clean_path="../data/clean_samples/Sample32.wav",
     noisy_path="../data/distorted_signals/mixed_Sample100.wav", 
