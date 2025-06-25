@@ -57,37 +57,37 @@ net.load_state_dict(checkpoint['model_state_dict'])
 net.eval()
 
 # Analyze multiple windy samples from directory
-windy_dir = "../data/wind_samples"  # UPDATE THIS PATH
+clean_dir = "../data/clean_samples"  # UPDATE THIS PATH
 
 # Find all wav files
-windy_files = glob.glob(os.path.join(windy_dir, "*.wav"))
+clean_files = glob.glob(os.path.join(clean_dir, "*.wav"))
 
-print(f"Found {len(windy_files)} windy samples to analyze...")
+print(f"Found {len(clean_files)} windy samples to analyze...")
 
 # Initialize analyzer
 analyzer = WorkingCleanUNetAnalyzer(net)
 
 # Analyze each windy sample
-all_windy_results = []
+all_clean_results = []
 
-for i, windy_file in enumerate(windy_files[:141]):  # Analyze first 10 files
+for i, windy_file in enumerate(clean_files):  # Analyze all files
     print(f"\nAnalyzing windy sample {i+1}: {os.path.basename(windy_file)}")
     
     try:
         windy_audio = load_audio_sample(windy_file)
         result = analyzer.analyze_sample(windy_audio, f"windy_{i}")
-        all_windy_results.append(result)
+        all_clean_results.append(result)
     except Exception as e:
         print(f"Error with {windy_file}: {e}")
 
 # Print summary of which layers are most active across all windy samples
-if all_windy_results:
-    print(f"\n SUMMARY ACROSS {len(all_windy_results)} WINDY SAMPLES:")
+if all_clean_results:
+    print(f"\n SUMMARY ACROSS {len(all_clean_results)} clean SAMPLES:")
     print("="*50)
     
     # Average activity scores across all samples
     layer_averages = {}
-    for result in all_windy_results:
+    for result in all_clean_results:
         for layer_name, stats in result['layer_stats'].items():
             if layer_name not in layer_averages:
                 layer_averages[layer_name] = []
@@ -99,7 +99,7 @@ if all_windy_results:
     
     sorted_layers = sorted(layer_averages.items(), key=lambda x: x[1], reverse=True)
     
-    print("Most active layers for wind noise:")
+    print("Most active layers for clean speech :")
     for layer_name, avg_activity in sorted_layers[:8]:
         print(f"  {layer_name}: {avg_activity:.4f}")
 
