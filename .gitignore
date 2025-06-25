@@ -1,5 +1,4 @@
 voicebank_dns_format/
-exp/
 *.pth
 *.wav
 *.npy
