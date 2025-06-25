@@ -32,7 +32,7 @@ print("Model loaded successfully!")
 # Now run Captum analysis
 results, attributions = analyze_cleanunet_with_captum(
     model=net,  # Use 'net' like in denoise.py
-    clean_path="../data/clean_data/Sample32.wav",
+    clean_path="../data/clean_samples/Sample32.wav",
     noisy_path="../data/distorted_signals/mixed_Sample100.wav", 
     windy_path="../data/wind_samples/WinD131.wav"
 )
