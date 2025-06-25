@@ -1,10 +1,10 @@
-from simple_captum_analyzer import analyze_cleanunet_simple
+from working_activation_analyzer import analyze_cleanunet_working
 from network import CleanUNet
 import json
 import torch
 import os
 
-# Load config exactly like denoise.py
+# Load model (same as before)
 with open('configs/wind-denoise.json') as f:
     data = f.read()
 config = json.loads(data)
@@ -12,10 +12,8 @@ config = json.loads(data)
 network_config = config["network_config"]
 train_config = config["train_config"]
 
-# Create and load model
 net = CleanUNet(**network_config).cuda()
 
-# Load checkpoint
 exp_path = train_config["exp_path"]
 ckpt_directory = os.path.join(train_config["log"]["directory"], exp_path, 'checkpoint')
 model_path = os.path.join(ckpt_directory, 'pretrained.pkl')
@@ -24,7 +22,7 @@ checkpoint = torch.load(model_path, map_location='cpu')
 net.load_state_dict(checkpoint['model_state_dict'])
 net.eval()
 
-print(" Model loaded successfully!")
+print("✅ Model loaded successfully!")
 
 # Run analysis with your audio files (UPDATE THESE PATHS)
 results = analyze_cleanunet_simple(
