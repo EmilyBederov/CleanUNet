@@ -70,7 +70,7 @@ analyzer = WorkingCleanUNetAnalyzer(net)
 # Analyze each windy sample
 all_windy_results = []
 
-for i, windy_file in enumerate(windy_files[:10]):  # Analyze first 10 files
+for i, windy_file in enumerate(windy_files[:141]):  # Analyze first 10 files
     print(f"\nAnalyzing windy sample {i+1}: {os.path.basename(windy_file)}")
     
     try:
